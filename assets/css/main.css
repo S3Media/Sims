@@ -1,7 +1,7 @@
 /* ==========================================================================
    Sims Crane & Equipment — main.css
    Heavy Haul & Oversized Transport landing page
-   Brand: Orange #F78F21 / Black
+   Brand: Orange #F78F21 / Black / Sand #E8E1D5
    Type:  Open Sans (body) / Aachen Bold (headings, Roboto Slab fallback)
    ========================================================================== */
 
@@ -10,6 +10,7 @@
   --orange: #F78F21;
   --orange-dark: #d9760f;
   --orange-light: #ffb45f;
+  --orange-deep: #a85200;
   --black: #000000;
   --ink: #14161a;
   --ink-2: #2b2f36;
@@ -17,7 +18,7 @@
   --gray-500: #6f767f;
   --gray-300: #d4d8dd;
   --gray-200: #e6e9ed;
-  --gray-100: #f3f5f7;
+  --sand: #e8e1d5;
   --white: #ffffff;
 
   --font-body: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
@@ -107,13 +108,15 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .container--narrow { max-width: var(--container-narrow); }
 
 .section { padding: clamp(56px, 7vw, 96px) 0; }
-.section--muted { background: var(--gray-100); }
+.section--muted { background: var(--sand); }
 .section--dark { background: var(--ink); color: #d9dde3; }
 .section--dark h2,
 .section--dark h3 { color: var(--white); }
 .section--dark a:not(.btn) { color: var(--orange-light); }
 
 .section__head { max-width: 780px; margin-bottom: clamp(32px, 4vw, 52px); }
+.section__head--center { max-width: none; text-align: center; margin-bottom: clamp(32px, 4vw, 44px); }
+.section__head--center .section__lede { margin-inline: auto; }
 .section__lede { font-size: 1.075rem; color: var(--gray-700); }
 .section--dark .section__lede { color: #b9c0c9; }
 .section__note {
@@ -330,7 +333,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
   font-weight: 600;
   color: var(--ink-2);
 }
-.dropdown a:hover { background: var(--gray-100); color: var(--orange-dark); text-decoration: none; }
+.dropdown a:hover { background: var(--sand); color: var(--orange-dark); text-decoration: none; }
 
 /* Mobile toggle */
 .nav-toggle {
@@ -379,7 +382,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
   right: 14px;
   width: 44px;
   height: 44px;
-  background: var(--gray-100);
+  background: var(--sand);
   border: 0;
   border-radius: var(--radius);
 }
@@ -597,7 +600,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
 /* ---------- 10. Pill list ---------- */
 .pill-list { display: flex; flex-wrap: wrap; gap: 12px; }
 .pill-list li {
-  background: var(--gray-100);
+  background: var(--sand);
   border: 1px solid var(--gray-200);
   border-left: 4px solid var(--orange);
   border-radius: var(--radius);
@@ -795,7 +798,474 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .site-footer__legal a { color: #9ba3ac; }
 .site-footer__legal a:hover { color: var(--orange); text-decoration: none; }
 
-/* ---------- 16. Responsive ---------- */
+/* ---------- 16. Careers: field hourly roles ---------- */
+
+/* Centred hero variant — headline, role line, location line, no body copy */
+.hero--careers .hero__inner {
+  text-align: center;
+  padding-top: clamp(34px, 4.6vw, 62px);
+  padding-bottom: clamp(30px, 4vw, 52px);
+}
+.hero--careers .hero__media { background-position: 50% center; }
+.hero--careers .hero__title {
+  max-width: none;
+  margin: 0 0 .12em;
+  white-space: nowrap;
+  font-size: clamp(1.65rem, 8.2vw, 5.625rem);
+}
+.hero__roleline {
+  margin: 0;
+  font-family: var(--font-head);
+  font-weight: 800;
+  font-size: clamp(1.25rem, 4.9vw, 2.1875rem);
+  line-height: 1.12;
+  color: var(--white);
+}
+.hero__locline {
+  margin: 14px 0 0;
+  font-weight: 600;
+  font-size: clamp(.95rem, 2vw, 1.2rem);
+  letter-spacing: .02em;
+  color: var(--orange-light);
+}
+
+.role-noscript {
+  background: #fff3e2;
+  border-left: 5px solid var(--orange);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+  margin-bottom: 24px;
+  font-size: 1rem;
+  color: var(--ink);
+}
+
+/* One role per full-width row */
+.roles { display: grid; grid-template-columns: 1fr; gap: 16px; }
+
+.role {
+  display: flex;
+  flex-direction: column;
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-left: 5px solid var(--orange);
+  border-radius: var(--radius-lg);
+  padding: 26px;
+  transition: box-shadow .2s var(--ease);
+}
+.role:hover { box-shadow: var(--shadow-md); }
+.role__name { font-size: clamp(1.15rem, 2.4vw, 1.5rem); margin: 0 0 .35em; }
+.role__blurb { margin: 0; font-size: .97rem; color: var(--gray-700); }
+
+.role__pick { display: grid; gap: 7px; margin-top: auto; padding-top: 16px; }
+.role__label {
+  font-family: var(--font-body);
+  font-weight: 800;
+  font-size: .8rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--orange-dark);
+}
+.role__select {
+  width: 100%;
+  padding: 13px 42px 13px 14px;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--ink);
+  background-color: var(--white);
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9'%3E%3Cpath d='M1 1l6 6 6-6' fill='none' stroke='%2314161a' stroke-width='2'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 15px center;
+  border: 2px solid var(--gray-300);
+  border-radius: var(--radius);
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  transition: border-color .16s var(--ease);
+}
+.role__select:focus { outline: none; border-color: var(--orange); }
+/* A location has been chosen — JS drops the data-empty flag */
+.role__select:not([data-empty]) { border-color: var(--orange); }
+
+.role__apply { margin-top: 16px; }
+/* Inert until a location is picked. The button also carries no href in this
+   state, so it is unclickable and skipped by the keyboard tab order. */
+.role__apply[aria-disabled="true"],
+.role__apply[aria-disabled="true"]:hover {
+  background: var(--sand);
+  border-color: var(--gray-300);
+  color: var(--gray-500);
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Wide: role on the left, picker and Apply button on the right of the row */
+@media (min-width: 880px) {
+  .role {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 290px 210px;
+    grid-template-areas:
+      "name  pick apply"
+      "blurb pick apply";
+    align-content: center;
+    column-gap: 30px;
+    padding: 28px 32px;
+  }
+  .role__name { grid-area: name; }
+  .role__blurb { grid-area: blurb; max-width: 52ch; }
+  .role__pick { grid-area: pick; align-self: end; margin-top: 0; padding-top: 0; }
+  .role__apply { grid-area: apply; align-self: end; margin-top: 0; height: 50px; }
+}
+
+/* Benefits laid out in columns, reusing .check-list for the orange ticks */
+.benefit-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 0 32px;
+}
+
+/* ---------- 17. Home page ---------- */
+
+/* Hero: looping reel behind a left-weighted scrim, hero-background.jpg as poster */
+.hero--home { min-height: clamp(520px, 72vh, 700px); display: flex; align-items: flex-end; }
+.hero--home .hero__media { z-index: -2; }
+.hero__video {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: contrast(1.04) brightness(.85);
+  pointer-events: none;
+}
+.hero__scrim {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(90deg, rgba(8, 9, 11, .88) 0%, rgba(8, 9, 11, .62) 45%, rgba(8, 9, 11, .18) 100%),
+    linear-gradient(180deg, rgba(8, 9, 11, .30) 0%, rgba(8, 9, 11, 0) 40%, rgba(8, 9, 11, .55) 100%);
+}
+.hero--home .hero__inner { position: relative; width: 100%; }
+.hero--home .hero__title { max-width: 15ch; }
+
+/* Stats band */
+.stat-band {
+  background-color: var(--ink);
+  background-image: repeating-linear-gradient(135deg, #1b1918 0 2px, var(--ink) 2px 12px);
+  color: var(--white);
+  border-bottom: 2px solid #34302e;
+}
+.stat-band__inner {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+.stat {
+  padding: clamp(30px, 3.6vw, 44px) 22px;
+  text-align: center;
+  border-right: 1px solid #34302e;
+}
+.stat:last-child { border-right: 0; }
+.stat__num {
+  margin: 0;
+  font-family: var(--font-head);
+  font-size: clamp(2rem, 4vw, 3.25rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -.02em;
+  font-variant-numeric: tabular-nums;
+  color: var(--white);
+}
+.stat__unit { font-size: .45em; font-weight: 700; }
+.stat__label {
+  margin: 10px 0 0;
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: #9b9797;
+}
+
+/* Fleet — card styling and hover lifted from the approved home page design */
+.eyebrow--deep { color: var(--orange-deep); }
+.fleet-title {
+  margin: 0 auto;
+  max-width: 26ch;
+  font-size: clamp(1.875rem, 3.6vw, 3rem);
+  font-weight: 800;
+  line-height: 1.02;
+  letter-spacing: -.02em;
+  text-transform: uppercase;
+}
+
+.fleet {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 22px;
+}
+
+a.fleet-card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: #f4efe6;
+  border: 1px solid #d9cfbd;
+  border-radius: 14px;
+  color: var(--ink);
+  transition: box-shadow .18s var(--ease), transform .18s var(--ease), border-color .18s var(--ease);
+}
+a.fleet-card:hover,
+a.fleet-card:focus-visible {
+  text-decoration: none;
+  border-color: var(--orange);
+  box-shadow: 0 0 0 2px var(--orange), 0 14px 34px rgba(247, 143, 33, .38);
+  transform: translateY(-3px);
+}
+
+.fleet-card__media {
+  display: block;
+  position: relative;
+  height: 170px;
+  overflow: hidden;
+  background: repeating-linear-gradient(135deg, #e7dfd1 0 2px, #efe9de 2px 12px);
+  border-bottom: 1px solid #d9cfbd;
+}
+.fleet-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .4s var(--ease);
+}
+a.fleet-card:hover .fleet-card__media img { transform: scale(1.05); }
+
+.fleet-card__body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 22px 20px 26px;
+}
+.fleet-card__title {
+  font-family: var(--font-head);
+  font-size: 1.1rem;
+  font-weight: 800;
+  line-height: 1.12;
+  letter-spacing: -.01em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.fleet-card__cap { font-size: .8rem; color: #5c554d; margin-bottom: 20px; }
+.fleet-card__link {
+  margin-top: auto;
+  font-size: .75rem;
+  font-weight: 800;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--orange-deep);
+}
+
+/* For sale — sits directly under the cream fleet block */
+#sale { border-top: 1px solid rgba(31, 28, 26, .12); }
+.sale {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  gap: clamp(32px, 5vw, 64px);
+  align-items: center;
+}
+.sale__actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 28px; }
+.brands { display: grid; gap: 10px; }
+.brands li {
+  padding: 15px 20px;
+  background: var(--white);
+  border: 1px solid rgba(31, 28, 26, .10);
+  border-left: 4px solid var(--orange);
+  border-radius: var(--radius);
+  font-family: var(--font-head);
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--ink);
+}
+
+/* Locations — list beside a dark Leaflet map of the 16 branches */
+.locs {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(28px, 4vw, 52px);
+  align-items: start;
+}
+.locs__state + .locs__state { margin-top: 32px; }
+.locs__title {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 12px;
+  padding-bottom: 12px;
+  margin-bottom: 6px;
+  border-bottom: 2px solid var(--orange);
+  font-size: 1.3rem;
+}
+.locs__count {
+  font-family: var(--font-body);
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: #9b9797;
+}
+.locs__list li {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, .1);
+  font-size: .96rem;
+}
+.locs__city {
+  background: none;
+  border: 0;
+  padding: 0;
+  font-family: var(--font-body);
+  font-size: .96rem;
+  font-weight: 600;
+  color: #d9dde3;
+  text-align: left;
+  cursor: pointer;
+  transition: color .16s var(--ease);
+}
+.locs__city:hover { color: var(--orange); }
+.locs__city.is-active { color: var(--orange); }
+.locs__tag {
+  margin-left: 7px;
+  padding: 2px 7px;
+  border-radius: 3px;
+  background: var(--orange);
+  color: var(--black);
+  font-size: .62rem;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  vertical-align: middle;
+}
+.locs__list a { color: var(--orange-light); font-weight: 700; white-space: nowrap; }
+.locs__cta { margin-top: 26px; }
+
+.locs__mapwrap { position: sticky; top: 140px; }
+.locs__map {
+  height: clamp(420px, 56vh, 620px);
+  background: #131211;
+  border: 1px solid #34302e;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+.locs__noscript,
+.locs__maphint {
+  margin-top: 14px;
+  font-size: .9rem;
+  color: #9b9797;
+}
+.locs__maphint[hidden] { display: none; }
+
+/* CARTO's basemap is already dark, so the tiles need no filter */
+.locs__map .leaflet-container { background: #131211; font-family: var(--font-body); }
+
+.locs__map .pin {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--orange);
+  border: 2px solid #131211;
+  box-shadow: 0 0 0 2px rgba(247, 143, 33, .35);
+}
+.locs__map .pin--hq {
+  width: 20px;
+  height: 20px;
+  background: var(--white);
+  border: 3px solid var(--orange);
+}
+.locs__map .pin.is-on {
+  background: var(--white);
+  box-shadow: 0 0 0 6px rgba(247, 143, 33, .45);
+}
+
+.locs__map .leaflet-popup-content-wrapper,
+.locs__map .leaflet-popup-tip {
+  background: #1c1a19;
+  color: #f3f2f2;
+  border-radius: var(--radius);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, .6);
+}
+.locs__map .leaflet-popup-content { margin: 14px 16px; font-size: .82rem; line-height: 1.5; }
+.locs__map .leaflet-popup-content b {
+  display: block;
+  margin-bottom: 5px;
+  font-family: var(--font-head);
+  font-size: .95rem;
+  font-weight: 800;
+  letter-spacing: .02em;
+  text-transform: uppercase;
+}
+.locs__map .leaflet-popup-content span { display: block; color: #9b9797; }
+.locs__map .leaflet-popup-content a { color: var(--orange); font-weight: 800; }
+.locs__map .leaflet-container a.leaflet-popup-close-button { color: #9b9797; }
+.locs__map .leaflet-control-attribution {
+  background: rgba(19, 18, 17, .8);
+  color: #6f6b6a;
+  font-size: 10px;
+}
+.locs__map .leaflet-control-attribution a { color: #9b9797; }
+.locs__map .leaflet-bar a {
+  background: #1c1a19;
+  color: #f3f2f2;
+  border-bottom-color: #34302e;
+}
+.locs__map .leaflet-bar a:hover { background: #2a2726; color: var(--orange); }
+
+/* About + careers */
+.about__cta { margin-top: 32px; }
+.careers-cta {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+  gap: clamp(28px, 4vw, 56px);
+  align-items: center;
+}
+.careers-cta__join {
+  margin-top: 1.1em;
+  font-family: var(--font-head);
+  font-size: 1.25rem;
+  color: var(--white);
+}
+.careers-cta__actions { display: flex; flex-direction: column; gap: 14px; }
+
+.cta-band__eyebrow {
+  margin: 0 0 .5em;
+  font-weight: 800;
+  font-size: .78rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: #4a3512;
+}
+
+@media (max-width: 1040px) {
+  .fleet { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 900px) {
+  .sale,
+  .locs,
+  .careers-cta { grid-template-columns: 1fr; }
+  .locs__mapwrap { position: static; order: -1; }
+  .locs__map { height: 360px; }
+  .stat-band__inner { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .stat:nth-child(2) { border-right: 0; }
+  .stat:nth-child(-n+2) { border-bottom: 1px solid #34302e; }
+  .careers-cta__actions { flex-direction: row; flex-wrap: wrap; }
+}
+
+@media (max-width: 560px) {
+  .fleet { grid-template-columns: 1fr; }
+}
+
+/* ---------- 18. Responsive ---------- */
 @media (max-width: 1240px) {
   /* Not enough room beside the buttons — drop the stats to their own row */
   .hero__cta-row {
@@ -896,7 +1366,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
     transform: none;
     box-shadow: none;
     border-top: 0;
-    background: var(--gray-100);
+    background: var(--sand);
     padding: 6px 0 12px;
   }
   .dropdown.is-open { display: block; }
@@ -943,7 +1413,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
   }
 }
 
-/* ---------- 17. Print ---------- */
+/* ---------- 19. Print ---------- */
 @media print {
   .site-header,
   .nav-scrim,
