@@ -29,29 +29,22 @@
       <ul class="utility-bar__links">
         <li><a href="https://simscrane.com/about/">About</a></li>
         <li><a href="https://simscrane.com/news/">News</a></li>
-        <li><a href="https://simscrane.com/careers/">Careers</a></li>
         <li><a href="https://simscrane.com/contact/">Contact</a></li>
       </ul>
-      <div class="utility-bar__actions">
-        <a class="utility-bar__phone" href="tel:+18136268102">
-          <span class="icon icon--phone" aria-hidden="true"></span>
-          <span class="utility-bar__phone-label">Call</span> 813-626-8102
-        </a>
-        <a class="btn btn--primary btn--sm" href="https://simscrane.com/request-a-quote/">Request A Quote</a>
-      </div>
     </div>
   </div>
 
   <div class="masthead">
-    <div class="container masthead__inner">
-      <a class="masthead__logo" href="https://simscrane.com/">
-        <img src="assets/images/sims-crane-logo.webp" alt="Sims Crane &amp; Equipment" width="380" height="88">
-      </a>
+    <div class="masthead__bar">
+      <div class="container masthead__inner">
+        <a class="masthead__logo" href="https://simscrane.com/">
+          <img src="assets/images/Sims-Crane-Logo-white.png" alt="Sims Crane &amp; Equipment" width="367" height="93">
+        </a>
 
-      <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="primaryNav">
-        <span class="nav-toggle__bars" aria-hidden="true"></span>
-        <span class="nav-toggle__label">Menu</span>
-      </button>
+        <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="primaryNav">
+          <span class="nav-toggle__bars" aria-hidden="true"></span>
+          <span class="nav-toggle__label">Menu</span>
+        </button>
 
       <nav class="primary-nav" id="primaryNav" aria-label="Primary">
         <button class="nav-close" id="navClose" type="button" aria-label="Close menu"></button>
@@ -117,6 +110,13 @@
           <li><a href="/current-field-hourly-roles.html">Careers</a></li>
         </ul>
       </nav>
+      </div>
+
+      <a class="masthead__phone" href="tel:+18136268102">
+        <span class="icon icon--phone" aria-hidden="true"></span>
+        <span class="masthead__phone-num">813-626-8102</span>
+      </a>
+      <a class="masthead__quote" href="https://simscrane.com/request-a-quote/">Request A Quote</a>
     </div>
   </div>
 </header>
@@ -133,12 +133,26 @@
   <div class="hero__scrim" aria-hidden="true"></div>
   <div class="container hero__inner">
     <p class="eyebrow eyebrow--light">We Are The</p>
-    <h1 class="hero__title">Southeast's Premier Crane Rental Company</h1>
+    <h1 class="hero__title"><span class="hero__title-line">Southeast's Premier</span> <span class="hero__title-line">Crane Rental Company</span></h1>
     <p class="hero__lede">The largest mobile crane rental fleet in Florida, backed by 65 years of safety practice, 3D lift planning and a service department that keeps every machine working.</p>
-    <div class="hero__actions">
-      <a class="btn btn--primary btn--lg" href="https://simscrane.com/request-a-quote/">Request A Quote</a>
-      <a class="btn btn--ghost btn--lg" href="tel:+18136268102">
-        <span class="i i--phone-solid btn__icon" aria-hidden="true"></span>813-626-8102
+    <div class="hero__ctas">
+      <a class="hero-cta" href="tel:+18136268102">
+        <span class="hero-cta__label">Call for Crane Rental</span>
+        <span class="hero-cta__phone">
+          <span class="i i--phone-solid hero-cta__icon" aria-hidden="true"></span>813-626-8102
+        </span>
+      </a>
+      <a class="hero-cta" href="tel:+18136268102">
+        <span class="hero-cta__label">Need Parts or Service</span>
+        <span class="hero-cta__phone">
+          <span class="i i--phone-solid hero-cta__icon" aria-hidden="true"></span>813-626-8102
+        </span>
+      </a>
+      <a class="hero-cta" href="tel:+18136268102">
+        <span class="hero-cta__label">New &amp; Used Sales</span>
+        <span class="hero-cta__phone">
+          <span class="i i--phone-solid hero-cta__icon" aria-hidden="true"></span>813-626-8102
+        </span>
       </a>
     </div>
   </div>
@@ -148,19 +162,19 @@
 <section class="stat-band" aria-label="Sims Crane at a glance">
   <div class="container stat-band__inner">
     <div class="stat">
-      <p class="stat__num">1959</p>
+      <p class="stat__num"><span class="stat__value" data-count-to="1959" data-count-from="1900">1959</span></p>
       <p class="stat__label">Founded</p>
     </div>
     <div class="stat">
-      <p class="stat__num">16</p>
+      <p class="stat__num"><span class="stat__value" data-count-to="16">16</span></p>
       <p class="stat__label">Locations</p>
     </div>
     <div class="stat">
-      <p class="stat__num">800<span class="stat__unit"> ton</span></p>
+      <p class="stat__num"><span class="stat__value" data-count-to="800">800</span><span class="stat__unit"> ton</span></p>
       <p class="stat__label">Max capacity</p>
     </div>
     <div class="stat">
-      <p class="stat__num">4<span class="stat__unit"> states</span></p>
+      <p class="stat__num"><span class="stat__value" data-count-to="4">4</span><span class="stat__unit"> states</span></p>
       <p class="stat__label">FL &middot; GA &middot; AL &middot; TN</p>
     </div>
   </div>
@@ -220,25 +234,89 @@
 </section>
 
 <!-- ============ FOR SALE ============ -->
-<section class="section section--muted" id="sale">
-  <div class="container sale">
-    <div class="sale__copy">
-      <p class="eyebrow">Sales</p>
-      <h2>Crane Equipment For Sale</h2>
-      <p>Our used cranes and equipment inventory is among the largest readily available worldwide. We offer pre-owned equipment from leading manufacturers such as Grove, Manitowoc, Tadano, Liebherr, and Link-Belt.</p>
-      <p>Sims Crane is a dealer for Tadano cranes. Tadano is a leading crane manufacturer that produces a variety of cranes, including all-terrain, rough terrain, crawler, and loader cranes.</p>
-      <div class="sale__actions">
-        <a class="btn btn--primary" href="https://simscrane.com/cranes-for-sale-inventory/">Browse Inventory</a>
-        <a class="btn btn--outline-dark" href="https://simscrane.com/request-a-quote/">Talk to Sales</a>
-      </div>
+<section class="section section--muted section--stripe-top" id="sale">
+  <div class="container">
+    <div class="section__head section__head--center">
+      <p class="eyebrow eyebrow--deep">Sales</p>
+      <h2>New &amp; Used Cranes For Sale</h2>
+      <p class="section__lede">Our used cranes and equipment inventory is among the largest readily available worldwide. We offer pre-owned equipment from leading manufacturers such as Grove, Manitowoc, Tadano, Liebherr, and Link-Belt. Sims Crane is a dealer for Tadano cranes, which produces all-terrain, rough terrain, crawler and loader cranes.</p>
     </div>
-    <ul class="brands" aria-label="Manufacturers we sell">
-      <li>Grove</li>
-      <li>Manitowoc</li>
-      <li>Tadano</li>
-      <li>Liebherr</li>
-      <li>Link-Belt</li>
+
+    <ul class="inventory__grid">
+        <li>
+          <a class="inv-card" href="https://simscrane.com/cranes-for-sale-inventory/2023-liebherr-ltm1060-3-1/">
+            <span class="inv-card__media">
+              <img src="assets/images/2023-LIEBHERR.webp" alt="2023 Liebherr LTM1060-3.1 all terrain crane" loading="lazy" decoding="async">
+            </span>
+            <span class="inv-card__body">
+              <span class="inv-card__make">Liebherr</span>
+              <span class="inv-card__model">LTM1060-3.1</span>
+              <span class="inv-card__year">2023 <span class="inv-card__cond inv-card__cond--used">Used</span></span>
+              <span class="inv-card__specs">
+                <span class="inv-spec"><span class="inv-spec__k">Capacity</span><span class="inv-spec__v">70 ton</span></span>
+                <span class="inv-spec"><span class="inv-spec__k">Main boom</span><span class="inv-spec__v">157'</span></span>
+                <span class="inv-spec"><span class="inv-spec__k">Jib</span><span class="inv-spec__v">52'</span></span>
+              </span>
+            </span>
+          </a>
+        </li>
+        <li>
+          <a class="inv-card" href="https://simscrane.com/cranes-for-sale-inventory/2016-tadano-atf200g-5/">
+            <span class="inv-card__media">
+              <img src="assets/images/2016-TADANO-1.webp" alt="2016 Tadano ATF 200G-5 all terrain crane" loading="lazy" decoding="async">
+            </span>
+            <span class="inv-card__body">
+              <span class="inv-card__make">Tadano</span>
+              <span class="inv-card__model">ATF 200G-5</span>
+              <span class="inv-card__year">2016 <span class="inv-card__cond inv-card__cond--used">Used</span></span>
+              <span class="inv-card__specs">
+                <span class="inv-spec"><span class="inv-spec__k">Capacity</span><span class="inv-spec__v">220 ton</span></span>
+                <span class="inv-spec"><span class="inv-spec__k">Main boom</span><span class="inv-spec__v">197'</span></span>
+                <span class="inv-spec"><span class="inv-spec__k">Jib</span><span class="inv-spec__v">55.4'</span></span>
+              </span>
+            </span>
+          </a>
+        </li>
+        <li>
+          <a class="inv-card" href="https://simscrane.com/cranes-for-sale-inventory/2008-kobelco-ck1600-ii/">
+            <span class="inv-card__media">
+              <img src="assets/images/2008-KOBELCO.webp" alt="2008 Kobelco CK1600 II lattice boom crane" loading="lazy" decoding="async">
+            </span>
+            <span class="inv-card__body">
+              <span class="inv-card__make">Kobelco</span>
+              <span class="inv-card__model">CK1600 II</span>
+              <span class="inv-card__year">2008 <span class="inv-card__cond inv-card__cond--used">Used</span></span>
+              <span class="inv-card__specs">
+                <span class="inv-spec"><span class="inv-spec__k">Capacity</span><span class="inv-spec__v">160 ton</span></span>
+                <span class="inv-spec"><span class="inv-spec__k">Main boom</span><span class="inv-spec__v">200'</span></span>
+                <span class="inv-spec"><span class="inv-spec__k">Jib</span><span class="inv-spec__v">60'</span></span>
+              </span>
+            </span>
+          </a>
+        </li>
+        <li>
+          <a class="inv-card" href="https://simscrane.com/cranes-for-sale-inventory/tadano-gtc-1300/">
+            <span class="inv-card__media">
+              <img src="assets/images/2025-Tadano-GTC-1300.jpg" alt="2025 Tadano GTC-1300 telescoping boom crawler crane" loading="lazy" decoding="async">
+            </span>
+            <span class="inv-card__body">
+              <span class="inv-card__make">Tadano</span>
+              <span class="inv-card__model">GTC-1300</span>
+              <span class="inv-card__year">2025 <span class="inv-card__cond inv-card__cond--new">New</span></span>
+              <span class="inv-card__specs">
+                <span class="inv-spec"><span class="inv-spec__k">Capacity</span><span class="inv-spec__v">130 ton</span></span>
+                <span class="inv-spec"><span class="inv-spec__k">Main boom</span><span class="inv-spec__v">155'</span></span>
+                <span class="inv-spec"><span class="inv-spec__k">Jib</span><span class="inv-spec__v">59'</span></span>
+              </span>
+            </span>
+          </a>
+        </li>
     </ul>
+
+    <div class="sale__actions">
+      <a class="btn btn--primary btn--lg" href="https://simscrane.com/cranes-for-sale-inventory/">Browse Inventory</a>
+      <a class="btn btn--outline-dark btn--lg" href="https://simscrane.com/request-a-quote/">Talk to Sales</a>
+    </div>
   </div>
 </section>
 
@@ -256,27 +334,123 @@
         <div class="locs__state">
           <h3 class="locs__title">Florida <span class="locs__count">15 locations</span></h3>
           <ul class="locs__list">
-            <li><button class="locs__city" type="button" data-loc="tampa">Tampa <b class="locs__tag">HQ</b></button><a href="tel:+18136268102">(813) 626-8102</a></li>
-            <li><button class="locs__city" type="button" data-loc="broward">Broward</button><a href="tel:+19543798103">(954) 379-8103</a></li>
-            <li><button class="locs__city" type="button" data-loc="ft-myers">Ft. Myers</button><a href="tel:+12393691000">(239) 369-1000</a></li>
-            <li><button class="locs__city" type="button" data-loc="jacksonville">Jacksonville</button><a href="tel:+19044489275">(904) 448-9275</a></li>
-            <li><button class="locs__city" type="button" data-loc="lake-city">Lake City</button><a href="tel:+19046010692">(904) 601-0692</a></li>
-            <li><button class="locs__city" type="button" data-loc="miami">Miami</button><a href="tel:+13058854009">(305) 885-4009</a></li>
-            <li><button class="locs__city" type="button" data-loc="mulberry">Mulberry</button><a href="tel:+18634258857">(863) 425-8857</a></li>
-            <li><button class="locs__city" type="button" data-loc="ocala">Ocala</button><a href="tel:+13528675438">(352) 867-5438</a></li>
-            <li><button class="locs__city" type="button" data-loc="orlando">Orlando</button><a href="tel:+14078512930">(407) 851-2930</a></li>
-            <li><button class="locs__city" type="button" data-loc="panama-city">Panama City</button><a href="tel:+18556507467">(855) 650-7467</a></li>
-            <li><button class="locs__city" type="button" data-loc="pinellas">Pinellas</button><a href="tel:+17264051178">(726) 405-1178</a></li>
-            <li><button class="locs__city" type="button" data-loc="space-coast">Space Coast</button><a href="tel:+13212893099">(321) 289-3099</a></li>
-            <li><button class="locs__city" type="button" data-loc="tallahassee">Tallahassee</button><a href="tel:+18502737069">(850) 273-7069</a></li>
-            <li><button class="locs__city" type="button" data-loc="vero-beach">Vero Beach</button><a href="tel:+17725696161">(772) 569-6161</a></li>
-            <li><button class="locs__city" type="button" data-loc="west-palm-beach">West Palm Beach</button><a href="tel:+15613282010">(561) 328-2010</a></li>
+            <li>
+              <button class="locs__city" type="button" data-loc="tampa">Tampa <b class="locs__tag">HQ</b></button>
+              <span class="locs__meta">
+                <a class="locs__tel" href="tel:+18136268102">(813) 626-8102</a>
+                <a class="locs__details" href="https://simscrane.com/tampa/">View location details</a>
+              </span>
+            </li>
+            <li>
+              <button class="locs__city" type="button" data-loc="broward">Broward</button>
+              <span class="locs__meta">
+                <a class="locs__tel" href="tel:+19543798103">(954) 379-8103</a>
+                <a class="locs__details" href="https://simscrane.com/broward/">View location details</a>
+              </span>
+            </li>
+            <li>
+              <button class="locs__city" type="button" data-loc="ft-myers">Ft. Myers</button>
+              <span class="locs__meta">
+                <a class="locs__tel" href="tel:+12393691000">(239) 369-1000</a>
+                <a class="locs__details" href="https://simscrane.com/ft-myers/">View location details</a>
+              </span>
+            </li>
+            <li>
+              <button class="locs__city" type="button" data-loc="jacksonville">Jacksonville</button>
+              <span class="locs__meta">
+                <a class="locs__tel" href="tel:+19044489275">(904) 448-9275</a>
+                <a class="locs__details" href="https://simscrane.com/jacksonville/">View location details</a>
+              </span>
+            </li>
+            <li>
+              <button class="locs__city" type="button" data-loc="lake-city">Lake City</button>
+              <span class="locs__meta">
+                <a class="locs__tel" href="tel:+19046010692">(904) 601-0692</a>
+                <a class="locs__details" href="https://simscrane.com/lake-city/">View location details</a>
+              </span>
+            </li>
+            <li>
+              <button class="locs__city" type="button" data-loc="miami">Miami</button>
+              <span class="locs__meta">
+                <a class="locs__tel" href="tel:+13058854009">(305) 885-4009</a>
+                <a class="locs__details" href="https://simscrane.com/miami/">View location details</a>
+              </span>
+            </li>
+            <li>
+              <button class="locs__city" type="button" data-loc="mulberry">Mulberry</button>
+              <span class="locs__meta">
+                <a class="locs__tel" href="tel:+18634258857">(863) 425-8857</a>
+                <a class="locs__details" href="https://simscrane.com/mulberry/">View location details</a>
+              </span>
+            </li>
+            <li>
+              <button class="locs__city" type="button" data-loc="ocala">Ocala</button>
+              <span class="locs__meta">
+                <a class="locs__tel" href="tel:+13528675438">(352) 867-5438</a>
+                <a class="locs__details" href="https://simscrane.com/ocala/">View location details</a>
+              </span>
+            </li>
+            <li>
+              <button class="locs__city" type="button" data-loc="orlando">Orlando</button>
+              <span class="locs__meta">
+                <a class="locs__tel" href="tel:+14078512930">(407) 851-2930</a>
+                <a class="locs__details" href="https://simscrane.com/orlando/">View location details</a>
+              </span>
+            </li>
+            <li>
+              <button class="locs__city" type="button" data-loc="panama-city">Panama City</button>
+              <span class="locs__meta">
+                <a class="locs__tel" href="tel:+18556507467">(855) 650-7467</a>
+                <a class="locs__details" href="https://simscrane.com/panama-city/">View location details</a>
+              </span>
+            </li>
+            <li>
+              <button class="locs__city" type="button" data-loc="pinellas">Pinellas</button>
+              <span class="locs__meta">
+                <a class="locs__tel" href="tel:+17264051178">(726) 405-1178</a>
+                <a class="locs__details" href="https://simscrane.com/pinellas/">View location details</a>
+              </span>
+            </li>
+            <li>
+              <button class="locs__city" type="button" data-loc="space-coast">Space Coast</button>
+              <span class="locs__meta">
+                <a class="locs__tel" href="tel:+13212893099">(321) 289-3099</a>
+                <a class="locs__details" href="https://simscrane.com/space-coast/">View location details</a>
+              </span>
+            </li>
+            <li>
+              <button class="locs__city" type="button" data-loc="tallahassee">Tallahassee</button>
+              <span class="locs__meta">
+                <a class="locs__tel" href="tel:+18502737069">(850) 273-7069</a>
+                <a class="locs__details" href="https://simscrane.com/tallahassee/">View location details</a>
+              </span>
+            </li>
+            <li>
+              <button class="locs__city" type="button" data-loc="vero-beach">Vero Beach</button>
+              <span class="locs__meta">
+                <a class="locs__tel" href="tel:+17725696161">(772) 569-6161</a>
+                <a class="locs__details" href="https://simscrane.com/vero-beach/">View location details</a>
+              </span>
+            </li>
+            <li>
+              <button class="locs__city" type="button" data-loc="west-palm-beach">West Palm Beach</button>
+              <span class="locs__meta">
+                <a class="locs__tel" href="tel:+15613282010">(561) 328-2010</a>
+                <a class="locs__details" href="https://simscrane.com/west-palm-beach/">View location details</a>
+              </span>
+            </li>
           </ul>
         </div>
         <div class="locs__state">
           <h3 class="locs__title">Georgia <span class="locs__count">1 location</span></h3>
           <ul class="locs__list">
-            <li><button class="locs__city" type="button" data-loc="atlanta">Atlanta</button><a href="tel:+14044105574">(404) 410-5574</a></li>
+            <li>
+              <button class="locs__city" type="button" data-loc="atlanta">Atlanta</button>
+              <span class="locs__meta">
+                <a class="locs__tel" href="tel:+14044105574">(404) 410-5574</a>
+                <a class="locs__details" href="https://simscrane.com/atlanta/">View location details</a>
+              </span>
+            </li>
           </ul>
         </div>
         <a class="btn btn--primary locs__cta" href="https://simscrane.com/request-a-quote/">Request A Quote</a>

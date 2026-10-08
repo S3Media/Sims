@@ -6,7 +6,7 @@
 (function () {
   'use strict';
 
-  var MOBILE_QUERY = '(max-width: 980px)';
+  var MOBILE_QUERY = '(max-width: 1360px)';  // must match the nav breakpoint in main.css
 
   /* ---------------- Mobile nav drawer ---------------- */
   var toggle = document.getElementById('navToggle');
@@ -162,20 +162,38 @@
     });
   });
   /* ---------------- Locations map ----------------
-     Leaflet over OpenStreetMap raster tiles, restyled dark in main.css.
-     TILE_URL is the single place to swap in a commercial tile provider. */
+     Leaflet raster map of the 16 branches, styled dark in main.css.
+     Providers are tried in order and fail over automatically, so a blocked
+     or key-gated provider never leaves a black rectangle. */
   var mapEl = document.getElementById('simsMap');
 
   if (mapEl && window.L) {
-    // CARTO dark basemap. Natively dark, so no CSS filter is applied over it.
-    // openstreetmap.org's own tile server is NOT usable here: its usage policy
-    // bars embedded/commercial use and it returns "Access blocked".
-    // To swap providers, change these three values only:
-    //   Esri (no key)  https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}
-    //   Stadia/MapTiler/Mapbox - paid tiers, require an API key in the URL
-    var TILE_URL = 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png';
-    var TILE_SUBS = 'abcd';
-    var TILE_ATTR = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>';
+
+    /* Both providers below need NO API key.
+         1. Esri Dark Gray Canvas - base plus a separate label layer. Its tile
+            path is {z}/{y}/{x}, not the usual {z}/{x}/{y}.
+         2. OpenStreetMap standard, inverted to dark by CSS. Last resort: OSM's
+            tile policy discourages embedding and can return "Access blocked".
+
+       Already tried and rejected: openstreetmap.org as primary (blocked),
+       basemaps.cartocdn.com (now requires an API key).
+       For real traffic, MapTiler / Stadia / Mapbox drop straight into this
+       list with a key in the URL. */
+    var PROVIDERS = [
+      {
+        url: 'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}',
+        labels: 'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Reference/MapServer/tile/{z}/{y}/{x}',
+        attribution: 'Tiles &copy; Esri &mdash; Esri, HERE, Garmin, &copy; OpenStreetMap contributors',
+        maxZoom: 16,
+        invert: false
+      },
+      {
+        url: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        maxZoom: 18,
+        invert: true
+      }
+    ];
 
     // id, city, address, phone, lat, lng, isHQ
     var SITES = [
@@ -197,12 +215,45 @@
       ['west-palm-beach', 'West Palm Beach', '363 Tall Pines Rd, West Palm Beach, FL 33413', '(561) 328-2010', 26.6825, -80.1498, 0]
     ];
 
-    var map = L.map(mapEl, { scrollWheelZoom: false, zoomControl: true });
-    var tiles = L.tileLayer(TILE_URL, {
-      attribution: TILE_ATTR,
-      subdomains: TILE_SUBS,
-      maxZoom: 20
-    }).addTo(map);
+    var map = L.map(mapEl, { scrollWheelZoom: false, zoomControl: true, zoomSnap: 0, zoomDelta: 0.5 });
+    var hint = document.getElementById('simsMapHint');
+    var baseLayer = null;
+    var labelLayer = null;
+
+    function useProvider(i) {
+      var pr = PROVIDERS[i];
+      if (!pr) { if (hint) hint.hidden = false; return; }
+
+      if (baseLayer) map.removeLayer(baseLayer);
+      if (labelLayer) { map.removeLayer(labelLayer); labelLayer = null; }
+
+      var loaded = 0, failed = 0, movedOn = false;
+      mapEl.classList.toggle('is-inverted', !!pr.invert);
+
+      baseLayer = L.tileLayer(pr.url, {
+        attribution: pr.attribution,
+        maxZoom: pr.maxZoom
+      }).addTo(map);
+
+      if (pr.labels) {
+        labelLayer = L.tileLayer(pr.labels, { maxZoom: pr.maxZoom }).addTo(map);
+      }
+
+      baseLayer.on('tileload', function () {
+        loaded++;
+        if (hint) hint.hidden = true;
+      });
+
+      baseLayer.on('tileerror', function () {
+        failed++;
+        // only abandon a provider that has served nothing at all
+        if (movedOn || loaded > 0 || failed <= 5) return;
+        movedOn = true;
+        useProvider(i + 1);
+      });
+    }
+
+    useProvider(0);
 
     var marks = {};
 
@@ -223,14 +274,23 @@
       marker.bindPopup(
         '<b>' + city + (hq ? ' \u2014 Headquarters' : '') + '</b>' +
         '<span>' + addr + '</span>' +
-        '<a href="tel:' + tel.replace(/\D/g, '') + '">' + tel + '</a>'
+        '<a href="tel:' + tel.replace(/\D/g, '') + '">' + tel + '</a>' +
+        '<a class="locs__popuplink" href="https://simscrane.com/' + id + '/">View location details</a>'
       );
 
       marks[id] = marker;
     });
 
-    var bounds = L.latLngBounds(SITES.map(function (s) { return [s[4], s[5]]; })).pad(0.12);
-    map.fitBounds(bounds);
+    var BOUNDS = L.latLngBounds(SITES.map(function (s) { return [s[4], s[5]]; }));
+    // The southernmost branch is Miami, so a pin-only fit clips the bottom of
+    // the state. Stretch the frame down to the Keys to keep the whole Florida
+    // peninsula in view.
+    BOUNDS.extend([24.45, -81.80]);
+    var FIT = { padding: [28, 36], animate: false };
+    map.fitBounds(BOUNDS, FIT);
+
+    // once a city has been chosen, stop re-framing the map on resize
+    var locked = false;
 
     var buttons = document.querySelectorAll('[data-loc]');
 
@@ -245,6 +305,7 @@
         var id = btn.getAttribute('data-loc');
         var marker = marks[id];
         if (!marker) return;
+        locked = true;
         setActive(id);
         map.flyTo(marker.getLatLng(), 9, { duration: .7 });
         marker.openPopup();
@@ -258,20 +319,73 @@
     });
     map.on('popupclose', function () { setActive(null); });
 
-    // if the tile provider refuses or the network blocks it, say so rather
-    // than leaving a black rectangle
-    var tileFails = 0;
-    var hint = document.getElementById('simsMapHint');
-    tiles.on('tileerror', function () {
-      tileFails++;
-      if (hint && tileFails > 6) hint.hidden = false;
-    });
-    tiles.on('tileload', function () { if (hint) hint.hidden = true; });
-
     // the map is laid out before it is measured, so re-fit once it settles
-    var refit = function () { map.invalidateSize(false); };
+    var refit = function () {
+      map.invalidateSize(false);
+      if (!locked) map.fitBounds(BOUNDS, FIT);
+    };
     window.addEventListener('load', refit);
     window.setTimeout(refit, 150);
     if (window.ResizeObserver) new ResizeObserver(refit).observe(mapEl);
   }
+
+  /* ---------- Stat band count-up ----------
+     Each [data-count-to] span animates from data-count-from (default 0) to its
+     target the first time the band scrolls into view. The literal final number
+     stays in the markup so it still reads correctly with JS off. */
+  var counters = document.querySelectorAll('[data-count-to]');
+  if (counters.length) {
+    var reduceMotion = window.matchMedia &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var canAnimate = !reduceMotion && typeof window.requestAnimationFrame === 'function';
+
+    var readFrom = function (el) {
+      var from = parseFloat(el.getAttribute('data-count-from'));
+      return isNaN(from) ? 0 : from;
+    };
+
+    var runCount = function (el) {
+      if (el.getAttribute('data-counted')) return;
+      el.setAttribute('data-counted', '1');
+
+      var to = parseFloat(el.getAttribute('data-count-to'));
+      if (isNaN(to)) return;
+      if (!canAnimate) { el.textContent = String(to); return; }
+
+      var from = readFrom(el);
+      var duration = 1500;
+      var started = 0;
+
+      var step = function (now) {
+        if (!started) started = now;
+        var t = Math.min((now - started) / duration, 1);
+        var eased = 1 - Math.pow(1 - t, 3);
+        el.textContent = String(Math.round(from + (to - from) * eased));
+        if (t < 1) window.requestAnimationFrame(step);
+        else el.textContent = String(to);
+      };
+      window.requestAnimationFrame(step);
+    };
+
+    if (canAnimate) {
+      // Seed the start value so the band never flashes its final numbers first.
+      Array.prototype.forEach.call(counters, function (el) {
+        el.textContent = String(readFrom(el));
+      });
+    }
+
+    if (canAnimate && 'IntersectionObserver' in window) {
+      var statObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return;
+          runCount(entry.target);
+          statObserver.unobserve(entry.target);
+        });
+      }, { threshold: 0.4 });
+      Array.prototype.forEach.call(counters, function (el) { statObserver.observe(el); });
+    } else {
+      Array.prototype.forEach.call(counters, function (el) { runCount(el); });
+    }
+  }
+
 }());
